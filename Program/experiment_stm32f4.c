@@ -125,7 +125,7 @@ int main( void )
     RS232_SendStr(USART3, (u8*)"failed!!\r\n");
 
   RS232_SendStr(USART3, (u8*)" f_write ... ");
-  res = f_write(&file, WriteData, 20, &i); 
+  res = f_write(&file, WriteData, 20, (UINT *)&i); 
   if(res==FR_OK)
     RS232_SendStr(USART3, (u8*)"OK!!\r\n");
   else
@@ -134,7 +134,7 @@ int main( void )
   file.fptr = 0;
 
   RS232_SendStr(USART3, (u8*)" f_read ... ");
-  res = f_read(&file, ReadBuf, 100, &i);
+  res = f_read(&file, ReadBuf, 100, (UINT *)&i);
   if(res==FR_OK)
     RS232_SendStr(USART3, (u8*)"OK!!\r\n");
   else
