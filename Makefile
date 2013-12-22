@@ -13,7 +13,7 @@ OBJCOPY=arm-none-eabi-objcopy
 CFLAGS=-g -mlittle-endian -mthumb
 CFLAGS+=-mcpu=cortex-m4
 CFLAGS+=-mfpu=fpv4-sp-d16 -mfloat-abi=softfp
-CFLAGS+=-ffreestanding -nostdlib -Wall
+#CFLAGS+=-Wall
 
 CFLAGS+=-D USE_STDPERIPH_DRIVER\
 	-D STM32F40XX \
@@ -23,6 +23,9 @@ CFLAGS+=-D USE_STDPERIPH_DRIVER\
 CFLAGS+=-I./
 CFLAGS+=-I./Program/
 CFLAGS+=-I./Fatfs/
+
+#Flash
+CFLAGS+=-Wl,-T,stm32_flash.ld
 
 #======================================================================#
 #Libraries
@@ -53,16 +56,10 @@ SRC+=$(ST_LIB)/src/misc.c \
 	$(ST_LIB)/src/stm32f4xx_sdio.c
 
 #Fatfs
-SRC+=./Fatfs/cc932.c\
-	./Fatfs/ccsbcs.c\
-	./Fatfs/diskio.c\
+SRC+=./Fatfs/diskio.c\
 	./Fatfs/ff.c\
 	./Fatfs/syscall.c\
 	./Fatfs/unicode.c\
-	./Fatfs/cc936.c\
-	./Fatfs/cc949.c\
-	./Fatfs/cc950.c\
-
 
 #Major programs
 SRC+=./Program/experiment_stm32f4.c\
@@ -72,6 +69,8 @@ SRC+=./Program/experiment_stm32f4.c\
 	./Program/stm32f4_sdio.c\
 	./Program/stm32f4_system.c\
 	./Program/stm32f4_usart.c
+
+LDFLAGS+=-lm -lc -lgcc
 
 #======================================================================#
 #STM32 startup file
