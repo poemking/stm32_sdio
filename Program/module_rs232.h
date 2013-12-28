@@ -14,6 +14,10 @@ void RS232_SendData( USART_TypeDef* USARTx, uc8 *SendData, u16 DataLen );
 void RS232_RecvStr( USART_TypeDef* USARTx, u8 *pWord );
 void RS232_RecvData( USART_TypeDef* USARTx, u8 *RecvData, u16 DataLen );
 void RS232_VisualScope( USART_TypeDef*, u8*, u16 );
+
+void puts(char *msg);
+void gets(char *msg);
+
 /*=====================================================================================================*/
 /*=====================================================================================================*/
 #endif

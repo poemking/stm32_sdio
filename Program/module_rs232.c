@@ -181,3 +181,23 @@ void RS232_VisualScope( USART_TypeDef* USARTx, u8 *pWord, u16 Len )
 }
 /*=====================================================================================================*/
 /*=====================================================================================================*/
+
+
+
+void puts(char *msg)
+{
+  while(*msg != '\0') {
+    USART_SendByte(USART3, (u8*)msg);
+    msg++;
+  }
+}
+
+
+void gets(char *msg)
+{
+  do {
+    *msg = USART_RecvByte(USART3);
+    msg++;
+  } while(*(msg-1) != '\0');
+  *msg = '\0';
+}
