@@ -455,12 +455,12 @@ int printf(const char *format, ...)
         ch[0] = (char)va_arg(para, int);
         strcat(str, ch);
         break;
-
+/*
       case 'i':
       case 'f':
         strcat(str, ftoa(va_arg(para, double)));
         break;
-
+*/
       case 'd':
         strcat(str, itoa(va_arg(para, int), integer));
         break;

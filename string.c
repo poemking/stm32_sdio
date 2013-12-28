@@ -24,6 +24,25 @@ char *strcat(char* dst, char* src)
         return retAddr;
 }
 
+char *strcpy(char *dest, const char *src)
+{
+        const  char *s = src;
+        char *d = dest;
+        while ((*d++ = *s++));
+        return dest;
+}
+
+size_t strlen(const char *s)
+{
+        const char *a = s;
+        const size_t *w;
+        for (; (uintptr_t) s % ALIGN; s++)
+                if (!*s) return (s - a);
+        for (w = (const void *) s; !HASZERO(*w); w++);
+        for (s = (const void *) w; *s; s++);
+        return (s - a);
+}
+
 void *memset(void *dest, int c, size_t n)
 {
         unsigned char *s = dest;
