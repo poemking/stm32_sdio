@@ -13,7 +13,7 @@ OBJCOPY=arm-none-eabi-objcopy
 CFLAGS=-g -mlittle-endian -mthumb
 CFLAGS+=-mcpu=cortex-m4
 CFLAGS+=-mfpu=fpv4-sp-d16 -mfloat-abi=softfp
-#CFLAGS+=-Wall
+CFLAGS+=-ffreestanding -nostdlib
 
 CFLAGS+=-D USE_STDPERIPH_DRIVER\
 	-D STM32F40XX \
@@ -68,7 +68,8 @@ SRC+=./Program/experiment_stm32f4.c\
 	./Program/stm32f4_delay.c\
 	./Program/stm32f4_sdio.c\
 	./Program/stm32f4_system.c\
-	./Program/stm32f4_usart.c
+	./Program/stm32f4_usart.c\
+	./string.c
 
 LDFLAGS+=-lm -lc -lgcc
 
